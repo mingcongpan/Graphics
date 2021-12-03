@@ -1,0 +1,56 @@
+---
+title: "PS 811 W7"
+author: "Mingcong Pan"
+date: "2021/12/1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create the following graphs in `ggplot2`.
+
+### 1. Check out the base R built-in dataset, `data("USArrests")`.
+
+```{r echo=FALSE, warning = FALSE, message = FALSE, results = "asis"}
+library(ggplot2)
+USArrests <- cbind(rownames(USArrests), USArrests)
+
+```
+
+### 2. Create a scatterplot that looks at the correlation between murder and assault arrests. Label the x and y axes and title the graph.
+
+```{r echo=FALSE, warning = FALSE, message = FALSE, results = "asis"}
+ggplot(USArrests, aes(x=Murder, y=Assault)) + 
+  geom_point() +  ggtitle("Scatter plot: correlation between murder and assault arrests") + 
+  xlab("Murder") + ylab("Assault")
+```
+
+### 3. Create a boxplot of rape arrests. Label the plot.
+
+```{r echo=FALSE, warning = FALSE, message = FALSE, results = "asis"}
+ggplot(USArrests, aes(x="", y =Rape)) + 
+  geom_boxplot() +  ggtitle("Box plot: Rape") + 
+  xlab("Rape")
+  
+```
+
+### 4. Create a barplot of the number of rape arrests per state.
+
+```{r echo=FALSE, warning = FALSE, message = FALSE, results = "asis"}
+ggplot(USArrests, aes(x=rownames(USArrests), y=Rape)) + 
+  geom_bar(stat = "identity") + scale_x_discrete(guide = guide_axis(n.dodge=6)) + 
+  ggtitle("Barplot: number of rape arrests per state") + 
+  xlab("State") + ylab("Rape")
+
+```
+
+### 5. Create a histogram for the percent of urban population.
+
+```{r echo=FALSE, warning = FALSE, message = FALSE, results = "asis"}
+ggplot(USArrests, aes(x=UrbanPop)) + geom_histogram() + 
+  ggtitle("Histogram: the percent of urban population") + 
+  xlab("Percentage of urban population") + ylab("Count")
+
+```
